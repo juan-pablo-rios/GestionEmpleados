@@ -1,0 +1,72 @@
+@{
+    ViewBag.Title = "Panel";
+}
+
+<div class="container-fluid">
+    @* Navbar *@
+    <div class="row mb-5">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Empleados" asp-action="PanelEmployees">
+                    <img src="https://media.istockphoto.com/id/1533834784/es/vector/s%C3%ADmbolo-icono-de-personas-gr%C3%A1ficos-vectoriales.jpg?s=1024x1024&w=is&k=20&c=3Mo767fBv8Pcj-LEg5bYAvleOCafSR3hd970529xK3Q=" alt="Logo" height="30" title="Panel" style="border-radius: 100%;">
+                </a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#library-menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="library-menu">
+                    <ul class="navbar-nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Empleados" asp-action="PanelEmployees">Empleados</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Turnos" asp-action="Index">Historial</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@ViewBag.Nombre</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form asp-action="Logout" method="post">
+                                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    @* Registrar empleado *@
+    <div class="row d-flex justify-content-end mt-5">
+        <div class="col-3">
+            <a class="btn btn-outline-dark" asp-controller="Empleados" asp-action="Create">Registrar empleado</a>
+        </div>
+    </div>
+    @* Tabla *@
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="table-responsive col-10" style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-hover table-dark table-bordered table-sm">
+                <tr class="text-center">
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Acciones</th>
+                </tr>
+            @foreach (var empleado in Model)
+            {
+                <tr class="text-center">
+                    <td>@empleado.Nombre</td>
+                    <td>@empleado.Apellidos</td>
+                    <td>@empleado.Email</td>
+                    <td>@empleado.Password</td>
+                    <td class="text-center">
+                        <a class="btn btn-danger" asp-route-id="@empleado.Id" asp-controller="Empleados" asp-action="Eliminar">Eliminar</a>
+                    </td>
+                </tr>
+            }
+            </table>
+        </div>
+    </div>
+
+</div>

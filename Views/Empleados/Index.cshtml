@@ -1,0 +1,44 @@
+@{
+    ViewBag.Title = "Inicio de sesión";
+}
+@model Empleado;
+
+<div class="container">
+    <div class="row d-flex justify-content-center align-content-center" style="height: 80vh;">
+        <div class="col-4">
+            <div class="mb-5 text-center">
+                <h1>Getión de empleados</h1>
+            </div>
+            @* Si el mensaje no está vacío, mostrar mensaje de error: *@
+            @{
+                if(!string.IsNullOrEmpty(ViewBag.Message))
+                {
+                    <div class="alert alert-danger mt-1 mb-2">
+                        @ViewBag.Message
+                    </div>
+                }
+            }
+            <form asp-controller="Empleados" asp-action="SignIn" method="post" enctype="multipart/form-data">
+                <!-- Email input -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Email</span>
+                    <input class="form-control" asp-for="Email"/>
+                </div>
+
+                <!-- Password input -->
+                <div class="input-group mb-5">
+                    <span class="input-group-text">Contraseña</span>
+                    <input type="password" class="form-control form-lg" asp-for="Password"/>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-dark btn-block mb-5">Iniciar sesión</button>
+
+                <!-- Register buttons -->
+                <div class="text-center">
+                    <p>¿No estás registrado? <a asp-controller="Empleados" asp-action="Create">Registrarse</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

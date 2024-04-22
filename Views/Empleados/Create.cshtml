@@ -1,0 +1,60 @@
+@{
+    ViewBag.Title = "Registro";
+}
+
+@model Empleado;
+
+<div class="container">
+    <div class="row d-flex justify-content-center align-content-center" style="height: 85vh;">
+        <div class="col-4">
+            <div class="mb-5 text-center">
+                <h1>Registro</h1>
+            </div>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <!-- Name input -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Nombre</span>
+                    <input class="form-control" asp-for="Nombre"/>
+                </div>
+
+                <!-- Lastname input -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Apellidos</span>
+                    <input class="form-control" asp-for="Apellidos"/>
+                </div>
+
+                <!-- Tipo de Documento input -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputIdType">Documento</label>
+                    <select class="form-select" id="inputIdType">
+                        <option selected>Tipo</option>
+                        <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+                        <option value="Cédula de ciudadanía">Cédula de ciudadanía</option>
+                        <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                </div>
+
+                <!-- Documento input -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text">Documento</span>
+                    <input class="form-control" asp-for="Documento"/>
+                </div>
+
+                <!-- Email input -->
+                <div class="input-group mb-4">
+                    <span class="input-group-text" id="basic-addon2">Email</span>
+                    <input id="form2Example1" class="form-control" asp-for="Email"/>
+                </div>
+
+                <!-- Password input -->
+                <div class="input-group mb-5">
+                    <span class="input-group-text" id="basic-addon2">Contraseña</span>
+                    <input class="form-control form-lg" type="password" asp-for="Password"/>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-dark btn-block mb-5">Registrar</button>
+            </form>
+        </div>
+    </div>
+</div>
